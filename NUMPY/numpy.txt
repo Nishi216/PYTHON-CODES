@@ -1,1 +1,128 @@
-NUMPY CODES
+--- NumPy or Numeric Python is a package for computation on homogeneous n-dimensional arrays. Numpy is a general-purpose array-processing package. It provides a high-performance multidimensional array object, and tools for working with these arrays.
+--- A tuple of integers giving the size of the array along each dimension is known as shape of the array. An array class in Numpy is called as ndarray.
+    Elements in Numpy arrays are accessed by using square brackets and can be initialized by using nested Python Lists.
+--- Numpy provides various functions that are capable of performing the numeric computations with high speed. Numpy provides various powerful data structures, implementing multi-dimensional
+    arrays and matrices.
+
+--- The most important object defined in numpy is an n-dimensional array type called ndarray. It describes the collection of items of the same type. Items in the collection are accessed by zero-based indexing.
+    Every item in the ndarray takes the same size of block in the memory. Each element in the ndarray is an object of data-type object (called dtype).
+    The basic ndarray object is created using an array function in numpy - numpy.array
+    Syntax is - numpy.array(object, dtype=None, copy=True, order = None, subok = False, ndmin = 0)
+            -- object - is any object exposing the array interface method (like lists tuples)
+            -- dtype is the desired data type and is optional (like int, complex etc)
+            -- copy is optional. by default it is true that is the object is copied.
+            -- order is C(row major) or F(column major) or A(any by default)
+            -- subok - by default returned array forced to be a base class array. if true, sub classes passed through.
+            -- ndmin - specifies minimum dimension of the resultant array.
+
+--- Arrays are created with the use of various data types such as lists, tuples, etc.
+--- Arrays in NumPy: NumPy’s main object is the homogeneous multidimensional array.
+        -- It is a table of elements (usually numbers), all of the same type, indexed by a tuple of positive integers.
+        -- In NumPy dimensions are called axes. The number of axes is rank.
+        -- NumPy’s array class is called ndarray. It is also known by the alias array.
+--- Different ways to create an array :
+        -- numpy.empty(shape)
+        -- numpy.zeros((tuple of shape))
+        -- numpy.ones((tuple of shape))   //empty zeros and ones take two more optional parameters of dtype and order = (either C or F)
+        -- numpy.full((tuple of shape),constant value,dtype(optional))
+        -- numpy.random.random((tuple of shape))
+        -- numpy.arange(start,end,evenly spaced integer value)
+        -- numpy.linspace(start,end,number of elements needed)
+--- Creating array from existing data : (done in numpy11.py)
+        -- numpy.asarray(input data like lists, dtype, order = either C or F)
+        -- numpy.frombuffer(input buffer, dtype, count = -1 by default, offset=0)
+        -- numpy.fromiter(iterable object, dtype, count=-1 by default)
+            // count=-1 means that all data is to be read
+
+--- For reshaping the array : oldArray.reshape(size to be formed)
+--- For flattening the array : oldArray.flatten()
+
+--- To print a range of an array, slicing is done. Since, sliced array holds a range of elements of the original array,
+    modifying content with the help of sliced array modifies the original array content.
+--- Indexing can be done in numpy by using an array as an index. In case of slice, a view or shallow copy of the array is returned but in index array a copy of the original array is returned.
+--- There are two types of indexing :
+        -- Basic Slicing and indexing : Consider the syntax x[obj] where x is the array and obj is the index. Slice object is the index in case of basic slicing.
+        --  Advanced indexing : Advanced indexing is triggered when obj is :
+                -- an ndarray of type integer or Boolean
+                -- a tuple with at least one sequence object
+                -- is a non tuple sequence object
+        Advanced indexing returns a copy of data rather than a view of it. Advanced indexing is of two types integer and Boolean.
+                -- Purely integer indexing : When integers are used for indexing. Each element of first dimension is paired with the element of the second dimension.
+                -- Boolean Indexing  - This indexing has some boolean expression as the index. Those elements are returned which satisfy that Boolean expression.
+--- Types of indexing in numpy array :
+    -- Slicing: Just like lists in python, NumPy arrays can be sliced. As arrays can be multidimensional, you need to specify a slice for each dimension of the array.
+    -- Integer array indexing: In this method, lists are passed for indexing for each dimension. One to one mapping of corresponding elements is done to construct a new arbitrary array.
+    -- Boolean array indexing: This method is used when we want to pick elements from array which satisfy some condition.
+--- In Numpy, datatypes of Arrays need not to be defined unless a specific datatype is required. Numpy tries to guess the datatype for Arrays which are not predefined in the constructor function.
+
+--- NumPy package contains an iterator object numpy.nditer. It is an efficient multidimensional iterator object using which it is possible to iterate over an array.
+    -- The order of iteration is chosen to match the memory layout of an array, without considering a particular ordering.
+    -- Controlling Iteration Order: There are times when it is important to visit the elements of an array in a specific order, irrespective of the layout of the elements in memory.
+                                    The nditer object provides an order parameter to control this aspect of iteration. The default is order=’K’ to keep the existing order.
+    -- Modifying Array Values: The nditer object has another optional parameter called op_flags. Its default value is read-only, but can be set to read-write or write-only mode.
+
+--- Broadcasting in numpy -
+        If the dimensions of two arrays are similar, then element wise arithmatic operation is performed. If two arrays are dissimilar then element wise operation cannot be performed.
+        However, operations on arrays of non-similar shapes in possible in numpy, because of the broadcasting capability. The smaller array gets broadcasted to the size of larger array
+        so that they have compatible shapes.
+        ex - [[1,2,3],[4,5,6],[7,8,9]]+[[1,2,3]] = [[2,4,6],[5,7,9],[8,10,12]]
+
+--- Numpy - iterating over an array - (done in numpy11.py)
+    -- Numpy package contains an iterator object numpy.nditer. Using this, it is possible to iterate over an array.
+    -- nditer object has another optional parameter called op_flags, by default it is read-only. But can be set to read-write or write only mode. This will modify the array in place.
+
+
+--- Numpy Binary operations -
+    -- numpy.bitwise_and() : This function is used to Compute the bit-wise AND of two array element-wise.
+    -- numpy.bitwise_or() : This function is used to Compute the bit-wise OR of two array element-wise.
+    -- numpy.bitwise_xor() : This function is used to Compute the bit-wise XOR of two array element-wise.
+    -- numpy.invert() : This function is used to Compute the bit-wise Inversion of an array element-wise. It computes the bit-wise NOT of the underlying binary representation of the integers in the input arrays.
+    -- numpy.left_shift() : This function is used to Shift the bits of an integer to the left.The bits are shifted to the left by appending 0s(zeroes) at the right of first array.
+                            If the number is 5 and we want to 2 bit left shift then after left shift 2 bit the result will be 5*(2^2) = 20
+    -- numpy.right_shift() : This function is used to Shift the bits of an integer to the right.
+                            If the number is 20 and we want to 2-bit right shift then after right shift 2-bit the result will be 20/(2^2) = 5.
+    -- numpy.binary_repr(number, width=None) : This function is used to represent binary form of the input number as a string.For negative numbers, if width is not given, a minus sign is added to the front. If width is given, the two’s complement of the number is returned, with respect to that width.
+                            In a two’s-complement system, negative numbers are represented by the two’s complement of the absolute value. This is the most common method of representing signed integers on computers.
+
+--- Sorting -
+    -- numpy.sort(array,axis(optional))
+    -- numpy.argsort() : This function returns the indices that would sort an array.
+    -- numpy.lexsort() : This function returns an indirect stable sort using a sequence of keys.
+    -- numpy.ndarray.sort() : Sort an array, in-place.
+    -- numpy.msort() : Return a copy of an array sorted along the first axis.
+    -- numpy.sort_complex()	: Sort a complex array using the real part first, then the imaginary part.
+    -- numpy.partition() : Return a partitioned copy of an array.
+    -- numpy.argpartition()	: Perform an indirect partition along the given axis using the algorithm specified by the kind keyword.
+
+--- Searching -
+    -- numpy.argmax() : This function returns indices of the max element of the array in a particular axis.
+    -- numpy.nanargmax() : This function returns indices of the max element of the array in a particular axis ignoring NaNs.The results cannot be trusted if a slice contains only NaNs and Infs.
+    -- numpy.argmin() : This function returns the indices of the minimum values along an axis.
+    -- numpy.nanargmin() : Return the indices of the minimum values in the specified axis ignoring NaNs.
+    -- numpy.argwhere() : Find the indices of array elements that are non-zero, grouped by element.
+    -- numpy.nonzero() : Return the indices of the elements that are non-zero.
+    -- numpy.flatnonzero() : Return indices that are non-zero in the flattened version of a.
+    -- numpy.where() : Return elements chosen from x or y depending on condition.
+    -- numpy.searchsorted() : Find indices where elements should be inserted to maintain order.
+    -- numpy.extract() : Return the elements of an array that satisfy some condition.
+
+--- Counting -
+    -- numpy.count_nonzero() : Counts the number of non-zero values in the array .
+
+    Array manipulation -
+    -- changing the shape of an array -
+            -- array.reshape((tuple of row and column))
+
+
+
+
+
+
+
+
+
+
+
+
+
+(Refer to https://www.geeksforgeeks.org/python-numpy/ for getting all the methods in numpy)
